@@ -8,8 +8,40 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+extension ViewController {
     
+    private func beginDownloadingFile() {
+        
+        shapeLayer.strokeEnd = 0
+        let urlString = "https://firebasestorage.googleapis.com/v0/b/firestorechat-e64ac.appspot.com/o/intermediate_training_rec.mp4?alt=media&token=e20261d0-7219-49d2-b32d-367e1606500c"
+        
+        let configuration = URLSessionConfiguration.default
+        let operationQueue = OperationQueue()
+        let urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: operationQueue)
+        
+        guard let url = URL(string: urlString) else { return }
+        let downloadTask = urlSession.downloadTask(with: url)
+        downloadTask.resume()
+        
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        print("Finished downloading file")
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        
+        let percentage = CGFloat(totalBytesWritten) / CGFloat(totalBytesExpectedToWrite)
+        
+        DispatchQueue.main.async {
+            self.percentageLabel.text = "\(Int(percentage * 100))%"
+            self.shapeLayer.strokeEnd = percentage
+        }
+    }
+}
+
+class ViewController: UIViewController, URLSessionDownloadDelegate {
+
     var shapeLayer = CAShapeLayer()
     
     var pulsatingLayer: CAShapeLayer!
@@ -85,7 +117,8 @@ class ViewController: UIViewController {
     }
         
     @objc private func handleTap() {
-        animateCircle()
+//        animateCircle()
+        beginDownloadingFile()
     }
     
     private func setupNotificationObservers() {
