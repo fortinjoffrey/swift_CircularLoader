@@ -14,6 +14,7 @@
 		DD49094C2472C9EA0044B817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD49094B2472C9EA0044B817 /* Assets.xcassets */; };
 		DD49094F2472C9EA0044B817 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD49094D2472C9EA0044B817 /* LaunchScreen.storyboard */; };
 		DD4909572472CC7F0044B817 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4909562472CC7F0044B817 /* UIColor+.swift */; };
+		DD49095D2472D8020044B817 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = DD49095C2472D8020044B817 /* demo.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		DD49094E2472C9EA0044B817 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD4909502472C9EA0044B817 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD4909562472CC7F0044B817 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		DD49095C2472D8020044B817 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +44,7 @@
 		DD4909362472C9E50044B817 = {
 			isa = PBXGroup;
 			children = (
+				DD49095B2472D7F70044B817 /* Demo */,
 				DD4909412472C9E50044B817 /* CircularLoader */,
 				DD4909402472C9E50044B817 /* Products */,
 			);
@@ -68,6 +71,14 @@
 				DD4909562472CC7F0044B817 /* UIColor+.swift */,
 			);
 			path = CircularLoader;
+			sourceTree = "<group>";
+		};
+		DD49095B2472D7F70044B817 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				DD49095C2472D8020044B817 /* demo.gif */,
+			);
+			path = Demo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +141,7 @@
 			files = (
 				DD49094F2472C9EA0044B817 /* LaunchScreen.storyboard in Resources */,
 				DD49094C2472C9EA0044B817 /* Assets.xcassets in Resources */,
+				DD49095D2472D8020044B817 /* demo.gif in Resources */,
 				DD49094A2472C9E50044B817 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
