@@ -34,11 +34,16 @@ class ViewController: UIViewController {
         setupNotificationObservers()
         setupCircleLayers()
         setupPercentageLabel()
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
     }
     
     private func setupCircleLayers() {
         pulsatingLayer = createCircleShapeLayer(strokeColor: .clear, fillColor: .pulsatingFillColor)
         _ = createCircleShapeLayer(strokeColor: .trackStrokeColor, fillColor: .backgroundColor)
+        shapeLayer = createCircleShapeLayer(strokeColor: .outlineStrokeColor, fillColor: .clear)
+        shapeLayer.strokeEnd = 0
+        shapeLayer.transform = CATransform3DMakeRotation(-CGFloat.pi / 2, 0, 0, 1)
     }
     
     private func animatePulsatingLayer() {
@@ -68,6 +73,19 @@ class ViewController: UIViewController {
         layer.position = view.center
         view.layer.addSublayer(layer)
         return layer
+    }
+    
+    fileprivate func animateCircle() {
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        basicAnimation.toValue = 1
+        basicAnimation.duration = 2
+        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
+        basicAnimation.isRemovedOnCompletion = false
+        shapeLayer.add(basicAnimation, forKey: "urSoBasic")
+    }
+        
+    @objc private func handleTap() {
+        animateCircle()
     }
     
     private func setupNotificationObservers() {
