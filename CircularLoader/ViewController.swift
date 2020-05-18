@@ -36,9 +36,19 @@ class ViewController: UIViewController {
     }
     
     private func setupCircleLayers() {
-        
         pulsatingLayer = createCircleShapeLayer(strokeColor: .clear, fillColor: .pulsatingFillColor)
         _ = createCircleShapeLayer(strokeColor: .trackStrokeColor, fillColor: .backgroundColor)
+        animatePulsatingLayer()
+    }
+    
+    private func animatePulsatingLayer() {
+        let animation = CABasicAnimation(keyPath: "transform.scale")
+        animation.toValue = 1.3
+        animation.duration = 0.8
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        animation.autoreverses = true
+        animation.repeatCount = Float.infinity
+        pulsatingLayer.add(animation, forKey: "pulsing")
     }
     
     fileprivate func setupPercentageLabel() {
