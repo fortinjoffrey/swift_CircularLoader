@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroundColor
         
+        setupNotificationObservers()
         setupCircleLayers()
         setupPercentageLabel()
     }
@@ -38,7 +39,6 @@ class ViewController: UIViewController {
     private func setupCircleLayers() {
         pulsatingLayer = createCircleShapeLayer(strokeColor: .clear, fillColor: .pulsatingFillColor)
         _ = createCircleShapeLayer(strokeColor: .trackStrokeColor, fillColor: .backgroundColor)
-        animatePulsatingLayer()
     }
     
     private func animatePulsatingLayer() {
@@ -68,6 +68,14 @@ class ViewController: UIViewController {
         layer.position = view.center
         view.layer.addSublayer(layer)
         return layer
+    }
+    
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc private func handleEnterForeground() {
+        animatePulsatingLayer()
     }
 }
 
